@@ -1,0 +1,35 @@
+{
+  "name": "google-form-notification",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "node build",
+    "push": "clasp push",
+    "set-triggers":"clasp run main",
+    "delete-triggers":"clasp run deleteTriggers",
+    "lint": "prettier 'src/**/*.ts' && eslint 'src/**/*.ts'",
+    "lint:fix": "prettier --write 'src/**/*.ts' && eslint --fix 'src/**/*.ts'"
+  },
+  "author": {
+    "name": "pandashark",
+    "url": "https://github.com/x7ddf74479jn5"
+  },
+  "repository": {
+    "url": "https://github.com/x7ddf74479jn5/google-form-notification"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/google-apps-script": "1.0.49",
+    "@typescript-eslint/eslint-plugin": "5.30.1",
+    "@typescript-eslint/parser": "5.30.1",
+    "dotenv": "16.0.1",
+    "esbuild": "0.14.48",
+    "esbuild-gas-plugin": "0.4.0",
+    "eslint": "8.18.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-simple-import-sort": "7.0.0",
+    "prettier": "2.7.1",
+    "typescript": "4.7.4"
+  }
+}
