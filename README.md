@@ -7,7 +7,7 @@ GASのフォーム送信トリガーと時間主導型日付ベーストリガ�
 
 - [clasp](https://github.com/google/clasp)
 - TypeScript
-- [esbuild]("https://esbuild.github.io/)
+- [esbuild](https://esbuild.github.io/)
 - [ESLint](https://github.com/eslint/eslint)
 - [prettier](https://github.com/prettier/prettier)
 
