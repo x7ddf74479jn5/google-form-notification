@@ -7,10 +7,11 @@ import { generalConfig } from "config";
 
 import { onFormSubmitHandlerName } from "@/core/form";
 import { onScheduleHandlerName } from "@/core/schedule";
+import { getSpreadsheet } from "@/lib/gas";
 import type { TimeBasedEvent } from "@/types";
 
 const setOnFormSubmitTrigger = (fn: string) => {
-  const sheet = SpreadsheetApp.getActive();
+  const sheet = getSpreadsheet();
   ScriptApp.newTrigger(fn).forSpreadsheet(sheet).onFormSubmit().create();
 };
 

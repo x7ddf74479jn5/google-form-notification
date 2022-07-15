@@ -1,6 +1,6 @@
 import { sendMail, sendSlack } from "@/core/notifier";
-import type { Urls } from "@/utils/url";
-import { getUrls } from "@/utils/url";
+import type { Urls } from "@/lib/gas";
+import { getUrls } from "@/lib/gas";
 
 export const onScheduleToMail = () => {
   onSchedule(sendMail);
