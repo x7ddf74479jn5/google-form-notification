@@ -1,10 +1,12 @@
+import { getForm } from "@/lib/gas";
 import { getConfig } from "@/utils/config";
 
 export const sendMail = (body: string) => {
   const {
     mail: { MAILING_LIST, MAIL_TITLE, SEND_BY },
   } = getConfig();
-  const subject = MAIL_TITLE ? MAIL_TITLE : "Googleフォーム申請";
+  const title = getForm().getTitle();
+  const subject = MAIL_TITLE ? MAIL_TITLE : `Googleフォーム申請: ${title}`;
   const recipient = Array.isArray(MAILING_LIST)
     ? MAILING_LIST.join(",")
     : MAILING_LIST;

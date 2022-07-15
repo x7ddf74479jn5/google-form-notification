@@ -10,16 +10,35 @@ export const getSpreadsheet = () => {
   return ssCache;
 };
 
-/* SpreadSheet */
+/* Form */
 
 let formCache: GoogleAppsScript.Forms.Form;
 
 export const getFormByUrl = (url: string) => {
-  if (!formCache) {
-    formCache = FormApp.openByUrl(url);
+  if (formCache) {
+    return formCache;
   }
 
+  formCache = FormApp.openByUrl(url);
+
   return formCache;
+};
+
+export const getForm = () => {
+  if (formCache) {
+    return formCache;
+  }
+
+  const ss = getSpreadsheet();
+  const _formUrl = ss.getActiveSheet().getFormUrl();
+
+  if (!_formUrl) {
+    throw new Error("紐付けられたフォームが見つかりませんでした。");
+  }
+
+  const form = getFormByUrl(_formUrl);
+
+  return form;
 };
 
 /* Util */
@@ -36,10 +55,7 @@ export type Urls = {
 export const getUrls = (): Urls => {
   const ss = getSpreadsheet();
   const ssUrl = ss.getUrl();
-  const _formUrl = ss.getActiveSheet().getFormUrl();
-  if (!_formUrl)
-    throw new Error("紐付けられたフォームが見つかりませんでした。");
-  const form = getFormByUrl(_formUrl);
+  const form = getForm();
   const summaryUrl = form.shortenFormUrl(form.getSummaryUrl());
   const viewUrl = form.shortenFormUrl(form.getPublishedUrl());
   const editUrl = form.shortenFormUrl(form.getEditUrl());

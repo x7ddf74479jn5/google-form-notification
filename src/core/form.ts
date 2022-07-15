@@ -1,5 +1,6 @@
 import { sendMail, sendSlack } from "@/core/notifier";
 import type { Urls } from "@/lib/gas";
+import { getForm } from "@/lib/gas";
 import { getUrls } from "@/lib/gas";
 
 /**
@@ -18,22 +19,25 @@ export const onFormSubmitToMail = (e: Event) => {
 };
 
 const onFormSubmit = (
-  values: Event["namedValues"],
+  values: Record<string, string[]>,
   notifier: (body: string) => void
 ) => {
   const urls = getUrls();
   const timestamp = new Date();
-  const body = createBody({ timestamp, values, urls });
+  const title = getForm().getTitle();
+  const body = createBody({ title, timestamp, values, urls });
 
   notifier(body);
 };
 
 const createBody = ({
+  title,
   values,
   timestamp,
   urls,
 }: {
-  values: Event["namedValues"];
+  title: string;
+  values: Record<string, string[]>;
   timestamp: GoogleAppsScript.Base.Date;
   urls: Urls;
 }) => {
@@ -55,7 +59,7 @@ const createBody = ({
   );
 
   const body = `
-Googleフォームに申請がありました。
+「${title}」に申請がありました。
 
 ----------------------------------------
 # 申請日

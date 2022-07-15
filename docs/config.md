@@ -9,7 +9,7 @@
 | property | `.env`("env"), Properties Service("propertiesService")に設定した環境変数の値が`config.ts`の同名の設定に上書きされます。(default: "default") |
 | mail |  |
 | MAILING_LIST | メーリングリスト |
-| MAIL_TITLE | タイトル（default: Googleフォーム申請） |
+| MAIL_TITLE | タイトル（default: Googleフォーム申請: {FORM_TITLE}） |
 | SEND_BY | 送信者名（default: "Google Form Notifier"） |
 | slack |  |
 | SLACK_WEBHOOK_URL | Slack Webhook URL |

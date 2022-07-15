@@ -1,5 +1,7 @@
 import { sendMail, sendSlack } from "@/core/notifier";
 import type { Urls } from "@/lib/gas";
+import { getForm } from "@/lib/gas";
+import { getSpreadsheet } from "@/lib/gas";
 import { getUrls } from "@/lib/gas";
 
 export const onScheduleToMail = () => {
@@ -11,10 +13,10 @@ export const onScheduleToSlack = () => {
 };
 
 const onSchedule = (notify: (body: string) => void) => {
-  const urls = getUrls();
-  const sheet = SpreadsheetApp.getActiveSheet();
-  if (!sheet)
+  const sheet = getSpreadsheet().getActiveSheet();
+  if (!sheet) {
     throw new Error("スプレッドシートのシートが見つかりませんでした。");
+  }
   const sheetData = sheet.getDataRange().getValues() as string[][];
   const header = sheetData[0];
 
@@ -33,16 +35,20 @@ const onSchedule = (notify: (body: string) => void) => {
 
   if (count === 0) return;
 
-  const body = createBody({ count, today, urls });
+  const urls = getUrls();
+  const title = getForm().getTitle();
+  const body = createBody({ title, count, today, urls });
 
   notify(body);
 };
 
 const createBody = ({
+  title,
   count,
   today,
   urls,
 }: {
+  title: string;
   count: number;
   today: string;
   urls: Urls;
@@ -53,6 +59,8 @@ const createBody = ({
   } = urls;
 
   const body = `
+${title}
+
 ${today}の申請数は${count}です。
 
 # Form Summary URL
