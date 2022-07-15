@@ -1,9 +1,9 @@
 import { generalConfig, privateConfig } from "config";
 
-import { getProperties } from "@/lib/gas";
 import type { GeneralConfig, PrivateConfig } from "@/types";
 
 import { getEnv } from "./env";
+import { getProperties } from "./property";
 
 let cache: GeneralConfig | undefined;
 
