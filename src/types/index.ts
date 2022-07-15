@@ -4,4 +4,3 @@ export type {
   PrivateConfig,
   TimeBasedEvent,
 } from "./config";
-export type { FormResponse } from "./gas";

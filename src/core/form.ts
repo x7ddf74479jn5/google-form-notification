@@ -1,6 +1,6 @@
 import { sendMail, sendSlack } from "@/core/notifier";
-import type { Urls } from "@/utils/url";
-import { getUrls } from "@/utils/url";
+import type { Urls } from "@/gas";
+import { getUrls } from "@/gas";
 
 /**
  * @see https://developers.google.com/apps-script/guides/triggers/events#form-submit
