@@ -1,7 +1,7 @@
+import { privateConfig } from "config";
+
 import type { PrivateConfig } from "@/types";
 import type { RemoveIndexSignature } from "@/types/utils";
-
-import { privateConfig } from "../../config";
 
 export const getProperties = () => {
   try {

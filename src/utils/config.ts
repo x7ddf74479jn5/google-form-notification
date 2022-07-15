@@ -1,7 +1,7 @@
+import { generalConfig, privateConfig } from "config";
+
 import type { GeneralConfig, PrivateConfig } from "@/types";
 import { getEnv, getProperties } from "@/utils/property";
-
-import { generalConfig, privateConfig } from "../../config";
 
 let cache: GeneralConfig | undefined;
 
