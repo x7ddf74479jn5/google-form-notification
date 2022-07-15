@@ -1,4 +1,3 @@
-import type { Send } from "@/core/notifier";
 import { sendMail, sendSlack } from "@/core/notifier";
 import type { Urls } from "@/utils/url";
 import { getUrls } from "@/utils/url";
@@ -11,7 +10,7 @@ export const onScheduleToSlack = () => {
   onSchedule(sendSlack);
 };
 
-const onSchedule = (notify: Send) => {
+const onSchedule = (notify: (body: string) => void) => {
   const urls = getUrls();
   const sheet = SpreadsheetApp.getActiveSheet();
   if (!sheet)

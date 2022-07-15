@@ -1,7 +1,5 @@
 import { getConfig } from "@/utils/config";
 
-export type Send = (body: string) => void;
-
 export const sendMail = (body: string) => {
   const {
     mail: { MAILING_LIST, MAIL_TITLE, SEND_BY },

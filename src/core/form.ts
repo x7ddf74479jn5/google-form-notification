@@ -1,4 +1,3 @@
-import type { Send } from "@/core/notifier";
 import { sendMail, sendSlack } from "@/core/notifier";
 import type { Urls } from "@/utils/url";
 import { getUrls } from "@/utils/url";
@@ -18,11 +17,12 @@ export const onFormSubmitToMail = (e: Event) => {
   onFormSubmit(e.namedValues, sendMail);
 };
 
-const onFormSubmit = (values: Event["namedValues"], notifier: Send) => {
+const onFormSubmit = (
+  values: Event["namedValues"],
+  notifier: (body: string) => void
+) => {
   const urls = getUrls();
-
   const timestamp = new Date();
-
   const body = createBody({ timestamp, values, urls });
 
   notifier(body);

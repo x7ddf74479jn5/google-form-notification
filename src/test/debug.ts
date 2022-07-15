@@ -1,4 +1,3 @@
-import type { Send } from "@/core/notifier";
 import { sendMail, sendSlack } from "@/core/notifier";
 
 export const debugMail = () => {
@@ -9,7 +8,7 @@ export const debugSlack = () => {
   debugSend(sendSlack);
 };
 
-const debugSend = (debug: Send) => {
+const debugSend = (debug: (body: string) => void) => {
   const body = "This is a test message from google-form-notifier";
   debug(body);
 };
