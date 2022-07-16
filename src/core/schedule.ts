@@ -20,7 +20,9 @@ const onSchedule = (notify: (body: string) => void) => {
   const sheetData = sheet.getDataRange().getValues() as string[][];
   const header = sheetData[0];
 
-  const today = Utilities.formatDate(new Date(), "Asia/Tokyo", "MM/dd");
+  const date = new Date();
+  date.setDate(date.getDate() - 1);
+  const yesterday = Utilities.formatDate(date, "Asia/Tokyo", "MM/dd");
 
   const count = sheetData.filter((data) => {
     return (
@@ -29,7 +31,7 @@ const onSchedule = (notify: (body: string) => void) => {
         new Date(data[header.indexOf("タイムスタンプ")]),
         "Asia/Tokyo",
         "MM/dd"
-      ) === today
+      ) === yesterday
     );
   }).length;
 
@@ -37,7 +39,7 @@ const onSchedule = (notify: (body: string) => void) => {
 
   const urls = getUrls();
   const title = getForm().getTitle();
-  const body = createBody({ title, count, today, urls });
+  const body = createBody({ title, count, yesterday, urls });
 
   notify(body);
 };
@@ -45,12 +47,12 @@ const onSchedule = (notify: (body: string) => void) => {
 const createBody = ({
   title,
   count,
-  today,
+  yesterday,
   urls,
 }: {
   title: string;
   count: number;
-  today: string;
+  yesterday: string;
   urls: Urls;
 }) => {
   const {
@@ -61,7 +63,7 @@ const createBody = ({
   const body = `
 ${title}
 
-${today}の申請数は${count}です。
+${yesterday}の申請数は${count}です。
 
 # Form Summary URL
 ${summaryUrl}
