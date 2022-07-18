@@ -1,7 +1,7 @@
 import { sendMail, sendSlack } from "@/core/notifier";
 import type { Urls } from "@/lib/gas";
+import { getActiveSheet, getSheetData } from "@/lib/gas";
 import { getForm } from "@/lib/gas";
-import { getSpreadsheet } from "@/lib/gas";
 import { getUrls } from "@/lib/gas";
 
 export const onScheduleToMail = () => {
@@ -13,16 +13,29 @@ export const onScheduleToSlack = () => {
 };
 
 const onSchedule = (notify: (body: string) => void) => {
-  const sheet = getSpreadsheet().getActiveSheet();
-  if (!sheet) {
-    throw new Error("スプレッドシートのシートが見つかりませんでした。");
-  }
-  const sheetData = sheet.getDataRange().getValues() as string[][];
-  const header = sheetData[0];
+  const sheet = getActiveSheet();
+  const sheetData = getSheetData(sheet);
+  const yesterday = getYesterday();
+  const count = getYesterdayDataCount(sheetData, yesterday);
 
+  if (count === 0) return;
+
+  const urls = getUrls();
+  const title = getForm().getTitle();
+  const body = createBody({ title, count, yesterday, urls });
+
+  notify(body);
+};
+
+const getYesterday = () => {
   const date = new Date();
   date.setDate(date.getDate() - 1);
   const yesterday = Utilities.formatDate(date, "Asia/Tokyo", "MM/dd");
+  return yesterday;
+};
+
+const getYesterdayDataCount = (sheetData: string[][], yesterday: string) => {
+  const header = sheetData[0];
 
   const count = sheetData.filter((data) => {
     return (
@@ -35,13 +48,7 @@ const onSchedule = (notify: (body: string) => void) => {
     );
   }).length;
 
-  if (count === 0) return;
-
-  const urls = getUrls();
-  const title = getForm().getTitle();
-  const body = createBody({ title, count, yesterday, urls });
-
-  notify(body);
+  return count;
 };
 
 const createBody = ({
