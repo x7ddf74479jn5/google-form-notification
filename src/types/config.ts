@@ -1,18 +1,20 @@
 export type GeneralConfig = {
   property?: "default" | "env" | "propertyService" | undefined;
   mail: {
-    MAILING_LIST: PrivateConfig["MAILING_LIST"];
+    MAILING_LIST: OrganizationConfig["MAILING_LIST"];
     MAIL_TITLE: string;
     SEND_BY: string;
   };
   slack: {
-    SLACK_WEBHOOK_URL: PrivateConfig["SLACK_WEBHOOK_URL"];
+    SLACK_WEBHOOK_URL: OrganizationConfig["SLACK_WEBHOOK_URL"];
   };
   triggers?: TriggerConfig[] | undefined;
 };
 
-export type PrivateConfig = {
+export type OrganizationConfig = {
   MAILING_LIST: string | string[];
+  MAIL_TITLE?: string;
+  SEND_BY?: string;
   SLACK_WEBHOOK_URL: string;
 };
 

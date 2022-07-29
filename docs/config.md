@@ -65,7 +65,7 @@ SLACK_WEBHOOK_URL: string
 
 設定できる場所
 
-- `config.ts`の`privateConfig`
+- `config.ts`の`organizationConfig`
 - `.env`
 - GASのProperties Service
 

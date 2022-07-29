@@ -1,6 +1,6 @@
 export type {
   GeneralConfig,
   OnFormSubmitEvent,
-  PrivateConfig,
+  OrganizationConfig,
   TimeBasedEvent,
 } from "./config";

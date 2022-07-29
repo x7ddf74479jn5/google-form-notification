@@ -1,6 +1,6 @@
-import { privateConfig } from "config";
+import { organizationConfig } from "config";
 
-import type { PrivateConfig } from "@/types";
+import type { OrganizationConfig } from "@/types";
 import type { RemoveIndexSignature } from "@/types/utils";
 
 export const getProperties = () => {
@@ -13,7 +13,7 @@ export const getProperties = () => {
     if (!validateProperties(data)) {
       throw new Error("PropertyValidationError");
     }
-    return data as RemoveIndexSignature<PrivateConfig>;
+    return data as RemoveIndexSignature<OrganizationConfig>;
   } catch (err) {
     if (err instanceof Error) {
       Logger.log("Failed with error %s", err.message);
@@ -26,8 +26,8 @@ export const getProperties = () => {
 
 const validateProperties = (
   data: Record<string, unknown>
-): data is PrivateConfig => {
+): data is OrganizationConfig => {
   return Object.entries(data).every(([k, v]) => {
-    Object.keys(privateConfig).includes(k) && v !== "";
+    Object.keys(organizationConfig).includes(k) && v !== "";
   });
 };

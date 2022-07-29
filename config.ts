@@ -2,22 +2,24 @@
  * @see https://github.com/x7ddf74479jn5/google-form-notification/docs/config.md
  */
 
-import type { GeneralConfig, PrivateConfig } from "@/types";
+import type { GeneralConfig, OrganizationConfig } from "@/types";
 
-export const privateConfig: PrivateConfig = {
+export const organizationConfig: OrganizationConfig = {
   MAILING_LIST: [],
+  MAIL_TITLE: "",
+  SEND_BY: "",
   SLACK_WEBHOOK_URL: "",
 };
 
 export const generalConfig: GeneralConfig = {
   property: "env",
   mail: {
-    MAILING_LIST: privateConfig.MAILING_LIST,
+    MAILING_LIST: "",
     MAIL_TITLE: "",
     SEND_BY: "",
   },
   slack: {
-    SLACK_WEBHOOK_URL: privateConfig.SLACK_WEBHOOK_URL,
+    SLACK_WEBHOOK_URL: "",
   },
   triggers: [
     {

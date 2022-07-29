@@ -52,7 +52,7 @@ mv .clasp.example.json .clasp.json
 `config.ts`に直接書く場合
 
 ```js
-export const privateConfig: PrivateConfig = {
+export const organizationConfig: OrganizationConfig = {
   MAILING_LIST: ["your_email_address@exmaple.com", "another_email_address@exmaple.com"],
   SLACK_WEBHOOK_URL:
     "hhttps://hooks.slack.com/services/*************************",

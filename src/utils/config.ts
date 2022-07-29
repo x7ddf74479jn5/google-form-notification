@@ -1,6 +1,6 @@
-import { generalConfig, privateConfig } from "config";
+import { generalConfig, organizationConfig } from "config";
 
-import type { GeneralConfig, PrivateConfig } from "@/types";
+import type { GeneralConfig, OrganizationConfig } from "@/types";
 
 import { getEnv } from "./env";
 import { getProperties } from "./property";
@@ -15,19 +15,21 @@ export const getConfig = () => {
 };
 
 const mergeConfigs = (): GeneralConfig => {
-  const privateConfig = getPrivateConfig(generalConfig.property);
+  const organizationConfig = getOrganizationConfig(generalConfig.property);
   const finalMailConfig = {
     ...generalConfig.mail,
-    MAILING_LIST: privateConfig.MAILING_LIST,
+    MAILING_LIST: organizationConfig.MAILING_LIST,
   };
   const finalSlackConfig = {
     ...generalConfig.slack,
-    SLACK_WEBHOOK_URL: privateConfig.SLACK_WEBHOOK_URL,
+    SLACK_WEBHOOK_URL: organizationConfig.SLACK_WEBHOOK_URL,
   };
   return { ...generalConfig, mail: finalMailConfig, slack: finalSlackConfig };
 };
 
-const getPrivateConfig = (mode: GeneralConfig["property"]): PrivateConfig => {
+const getOrganizationConfig = (
+  mode: GeneralConfig["property"]
+): OrganizationConfig => {
   switch (mode) {
     case "env": {
       return getEnv();
@@ -36,7 +38,7 @@ const getPrivateConfig = (mode: GeneralConfig["property"]): PrivateConfig => {
       return getProperties();
     }
     default: {
-      return privateConfig;
+      return organizationConfig;
     }
   }
 };
