@@ -10,12 +10,12 @@ export const getEnv = () => {
 export const getGlobalVars = () => {
   return {
     // @ts-expect-error Global variables expected to be defined in a remote gs file
-    MAILING_LIST: MAILING_LIST,
+    MAILING_LIST: MAILING_LIST as string | string[],
     // @ts-expect-error
-    SLACK_WEBHOOK_URL: SLACK_WEBHOOK_URL,
+    SLACK_WEBHOOK_URL: SLACK_WEBHOOK_URL as string,
     // @ts-expect-error
-    MAIL_TITLE: MAIL_TITLE,
+    MAIL_TITLE: MAIL_TITLE as string,
     // @ts-expect-error
-    SEND_BY: SEND_BY,
+    SEND_BY: SEND_BY as string,
   };
 };

@@ -17,12 +17,15 @@ export const getConfig = () => {
 const mergeConfigs = (): GeneralConfig => {
   const organizationConfig = getOrganizationConfig(generalConfig.property);
   const finalMailConfig = {
-    ...generalConfig.mail,
-    MAILING_LIST: organizationConfig.MAILING_LIST,
+    MAILING_LIST:
+      organizationConfig.MAILING_LIST ?? generalConfig.mail.MAILING_LIST,
+    MAIL_TITLE: organizationConfig.MAIL_TITLE ?? generalConfig.mail.MAIL_TITLE,
+    SEND_BY: organizationConfig.SEND_BY ?? generalConfig.mail.SEND_BY,
   };
   const finalSlackConfig = {
-    ...generalConfig.slack,
-    SLACK_WEBHOOK_URL: organizationConfig.SLACK_WEBHOOK_URL,
+    SLACK_WEBHOOK_URL:
+      organizationConfig.SLACK_WEBHOOK_URL ??
+      generalConfig.slack.SLACK_WEBHOOK_URL,
   };
   return { ...generalConfig, mail: finalMailConfig, slack: finalSlackConfig };
 };
