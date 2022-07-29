@@ -54,10 +54,9 @@ mv .clasp.example.json .clasp.json
 ```js
 export const organizationConfig: OrganizationConfig = {
   MAILING_LIST: ["your_email_address@exmaple.com", "another_email_address@exmaple.com"],
-  SLACK_WEBHOOK_URL:
-    "hhttps://hooks.slack.com/services/*************************",
+  SLACK_WEBHOOK_URL: "https://hooks.slack.com/services/*************************",
   MAIL_TITLE: "Google Form申請",
-  SEND_BY: "Google Form Notifier";
+  SEND_BY: "Google Form Notifier"
 };
 ```
 
@@ -79,8 +78,7 @@ variables.gs
 
 ```js
 const MAILING_LIST = ["your_email_address@exmaple.com", "another_email_address@exmaple.com"];
-const SLACK_WEBHOOK_URL = 
-"https://hooks.slack.com/services/*************************";
+const SLACK_WEBHOOK_URL = "https://hooks.slack.com/services/*************************";
 const MAIL_TITLE = "Google Form申請";
 const SEND_BY = "Google Form Notifier";
 ```
