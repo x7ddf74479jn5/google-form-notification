@@ -2,7 +2,7 @@ import { generalConfig, organizationConfig } from "config";
 
 import type { GeneralConfig, OrganizationConfig } from "@/types";
 
-import { getEnv } from "./env";
+import { getEnv, getGlobalVars } from "./env";
 import { getProperties } from "./property";
 
 let cache: GeneralConfig | undefined;
@@ -36,6 +36,9 @@ const getOrganizationConfig = (
     }
     case "propertyService": {
       return getProperties();
+    }
+    case "global": {
+      return getGlobalVars();
     }
     default: {
       return organizationConfig;

@@ -1,5 +1,5 @@
 export type GeneralConfig = {
-  property?: "default" | "env" | "propertyService" | undefined;
+  property?: "default" | "env" | "propertyService" | "global" | undefined;
   mail: {
     MAILING_LIST: OrganizationConfig["MAILING_LIST"];
     MAIL_TITLE: string;

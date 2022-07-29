@@ -6,7 +6,7 @@
 
 | 属性名 | 説明 |
 | - | - |
-| property | `.env`("env"), Properties Service("propertiesService")に設定した環境変数の値が`config.ts`の同名の設定に上書きされます。(default: "default") |
+| property | `.env`(`"env"`), Properties Service(`"propertiesService"`), gsファイルのグローバル変数(`"global"`)に設定した環境変数の値が`config.ts`の同名の設定に上書きされます。(default: "default") |
 | mail |  |
 | MAILING_LIST | メーリングリスト |
 | MAIL_TITLE | タイトル（default: Googleフォーム申請: {FORM_TITLE}） |
@@ -60,7 +60,9 @@ triggers: [
 ```js
 // .envファイルやProperties Serviceに記述する場合は","区切りの文字列で指定してください
 MAILING_LIST: string | string[], 
-SLACK_WEBHOOK_URL: string
+MAIL_TITLE: string;
+SEND_BY: string;
+SLACK_WEBHOOK_URL: string;
 ```
 
 設定できる場所
@@ -68,6 +70,7 @@ SLACK_WEBHOOK_URL: string
 - `config.ts`の`organizationConfig`
 - `.env`
 - GASのProperties Service
+- GASのgsファイルのグローバル変数
 
 ## 要望・バグ報告など
 
