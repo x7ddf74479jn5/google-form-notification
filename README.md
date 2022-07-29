@@ -67,10 +67,10 @@ export const organizationConfig: OrganizationConfig = {
 
 ```shell
 cp .env.example .env
-MAILING_LIST="your_email_address@exmaple.com,another_email_address@exmaple.com",
+MAILING_LIST="your_email_address@exmaple.com,another_email_address@exmaple.com"
 SLACK_WEBHOOK_URL="https://hooks.slack.com/services/*************************"
-MAIL_TITLE: "Google Form申請",
-SEND_BY: "Google Form Notifier";
+MAIL_TITLE="Google Form申請"
+SEND_BY="Google Form Notifier"
 ```
 
 #### gsファイルにグローバル変数として書く場合
