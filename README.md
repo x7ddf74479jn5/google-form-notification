@@ -47,19 +47,21 @@ mv .clasp.example.json .clasp.json
 }
 ```
 
-環境変数の設定
+### 環境変数の設定
 
-`config.ts`に直接書く場合
+#### `config.ts`に直接書く場合
 
 ```js
 export const organizationConfig: OrganizationConfig = {
   MAILING_LIST: ["your_email_address@exmaple.com", "another_email_address@exmaple.com"],
   SLACK_WEBHOOK_URL:
     "hhttps://hooks.slack.com/services/*************************",
+  MAIL_TITLE: "Google Form申請",
+  SEND_BY: "Google Form Notifier";
 };
 ```
 
-`.env`に書く場合
+#### `.env`に書く場合
 
 `config.property`を`env`に設定
 
@@ -67,12 +69,25 @@ export const organizationConfig: OrganizationConfig = {
 cp .env.example .env
 MAILING_LIST="your_email_address@exmaple.com,another_email_address@exmaple.com",
 SLACK_WEBHOOK_URL="https://hooks.slack.com/services/*************************"
+MAIL_TITLE: "Google Form申請",
+SEND_BY: "Google Form Notifier";
 ```
 
-GASのスクリプトプロパティに設定する場合
+#### gsファイルにグローバル変数として書く場合
+
+variables.gs
+
+```js
+const MAILING_LIST = ["your_email_address@exmaple.com", "another_email_address@exmaple.com"];
+const SLACK_WEBHOOK_URL = 
+"https://hooks.slack.com/services/*************************";
+const MAIL_TITLE = "Google Form申請";
+const SEND_BY = "Google Form Notifier";
+```
+
+#### GASのスクリプトプロパティに設定する場合
 
 `config.property`を`propertiesService`に設定
-
 
 プロジェクトのダッシュボードから設定しください。
 
