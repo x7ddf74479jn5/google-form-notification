@@ -6,8 +6,8 @@
   "scripts": {
     "build": "node build",
     "push": "clasp push",
-    "set-triggers":"clasp run main",
-    "delete-triggers":"clasp run deleteTriggers",
+    "set-triggers": "clasp run main",
+    "delete-triggers": "clasp run deleteTriggers",
     "lint": "prettier 'src/**/*.ts' && eslint 'src/**/*.ts'",
     "lint:fix": "prettier --write 'src/**/*.ts' && eslint --fix 'src/**/*.ts'"
   },
