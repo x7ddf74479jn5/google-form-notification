@@ -1,6 +1,7 @@
 import { onFormSubmitToMail, onFormSubmitToSlack } from "@/core/form";
 import { onScheduleToMail, onScheduleToSlack } from "@/core/schedule";
 import { resetTriggers, setTriggers } from "@/core/trigger";
+import { registerMenu } from "@/core/ui";
 import { debugMail, debugSlack } from "@/test/debug";
 
 const greeting = () => {
@@ -15,8 +16,14 @@ const main = () => {
   setTriggers();
 };
 
+const onOpen = () => {
+  registerMenu();
+};
+
 // @ts-expect-error
 (global as any).main = main;
+// @ts-expect-error
+(global as any).onOpen = onOpen;
 // @ts-expect-error
 (global as any).onFormSubmitToMail = onFormSubmitToMail;
 // @ts-expect-error

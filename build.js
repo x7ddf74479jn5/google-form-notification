@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const { parsed: loadedEnvs } = dotenv.config();
 const pkg = require("./package.json");
 const { GasPlugin } = require("esbuild-gas-plugin");
+const { copy } = require("esbuild-plugin-copy");
 
 /** @type {string[]} */
 const options = process.argv.slice(2);
@@ -24,17 +25,14 @@ const buildOptions = {
   entryPoints: ["./src/main.ts"],
   bundle: true,
   target: "esnext", // Lowers target to support ESNext syntax
-
   banner: {
     js: [
       "/*! DO NOT EDIT DIRECTLY. */",
       `/*! This code is generated from ${pkg.repository.url}/tree/main by clasp. */`,
     ].join("\n"),
   },
-
   define: {
     DEBUG: debug,
-
     // Replace `process.env.FOO` with variables written in `.env` file
     ...Object.fromEntries(
       Object.entries(loadedEnvs ?? {}).map(([key, value]) => [
@@ -48,7 +46,16 @@ const buildOptions = {
   minify: !noMinify,
   minifyIdentifiers: false,
   logLevel: "info",
-  plugins: [GasPlugin],
+  plugins: [
+    GasPlugin,
+    copy({
+      resolveFrom: "cwd",
+      assets: {
+        from: ["./static/*"],
+        to: ["./build"],
+      },
+    }),
+  ],
 };
 
 runBuild(buildOptions).catch((error) => {

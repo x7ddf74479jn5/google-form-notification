@@ -1,9 +1,9 @@
 import { generalConfig, organizationConfig } from "config";
 
+import { getProperties } from "@/core/property";
 import type { GeneralConfig, OrganizationConfig } from "@/types";
 
 import { getEnv, getGlobalVars } from "./env";
-import { getProperties } from "./property";
 
 let cache: GeneralConfig | undefined;
 

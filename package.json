@@ -26,6 +26,7 @@
     "dotenv": "16.0.1",
     "esbuild": "0.14.48",
     "esbuild-gas-plugin": "0.4.0",
+    "esbuild-plugin-copy": "1.6.0",
     "eslint": "8.18.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-simple-import-sort": "7.0.0",
