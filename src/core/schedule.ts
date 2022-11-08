@@ -86,6 +86,6 @@ ${ssUrl}
 };
 
 export const onScheduleHandlerName = {
-  onScheduleToMail: onScheduleToMail.name,
-  onScheduleToSlack: onScheduleToSlack.name,
+  onScheduleToMail: "onScheduleToMail",
+  onScheduleToSlack: "onScheduleToSlack",
 };
