@@ -21,7 +21,7 @@ export const getProperties = () => {
 };
 
 export function openSettings() {
-  const template = HtmlService.createTemplateFromFile("Settings");
+  const template = HtmlService.createTemplateFromFile("settings");
   template.settings = getProperties();
   const html = template.evaluate().setWidth(500).setHeight(400);
   SpreadsheetApp.getUi().showModalDialog(html, "Settings");
