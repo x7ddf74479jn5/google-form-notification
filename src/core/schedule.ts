@@ -1,8 +1,8 @@
-import { sendMail, sendSlack } from "@/core/notifier";
-import type { Urls } from "@/lib/gas";
-import { getActiveSheet, getSheetData } from "@/lib/gas";
-import { getForm } from "@/lib/gas";
-import { getUrls } from "@/lib/gas";
+import { getForm } from "@/lib/form";
+import { sendMail, sendSlack } from "@/lib/notifier";
+import { getActiveSheet, getSheetData } from "@/lib/sheet";
+import type { Urls } from "@/lib/utils";
+import { getUrls } from "@/lib/utils";
 
 export const onScheduleToMail = () => {
   onSchedule(sendMail);
@@ -83,9 +83,4 @@ ${ssUrl}
 `;
 
   return body;
-};
-
-export const onScheduleHandlerName = {
-  onScheduleToMail: "onScheduleToMail",
-  onScheduleToSlack: "onScheduleToSlack",
 };

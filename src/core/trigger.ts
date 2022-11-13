@@ -5,9 +5,7 @@
 
 import { generalConfig } from "config";
 
-import { onFormSubmitHandlerName } from "@/core/form";
-import { onScheduleHandlerName } from "@/core/schedule";
-import { getSpreadsheet } from "@/lib/gas";
+import { getSpreadsheet } from "@/lib/sheet";
 import type { TimeBasedEvent } from "@/types";
 
 const setOnFormSubmitTrigger = (fn: string) => {
@@ -43,24 +41,18 @@ export const setTriggers = () => {
     }
     if (trigger.event.eventType === "ON_FORM_SUBMIT") {
       if (trigger.notifiers.includes("mail")) {
-        setOnFormSubmitTrigger(onFormSubmitHandlerName.onFormSubmitToMail);
+        setOnFormSubmitTrigger("onFormSubmitToMail");
       }
       if (trigger.notifiers.includes("slack")) {
-        setOnFormSubmitTrigger(onFormSubmitHandlerName.onFormSubmitToSlack);
+        setOnFormSubmitTrigger("onFormSubmitToSlack");
       }
     }
     if (trigger.event.eventType === "CLOCK") {
       if (trigger.notifiers.includes("mail")) {
-        setTimeBasedTrigger(
-          onScheduleHandlerName.onScheduleToMail,
-          trigger.event
-        );
+        setTimeBasedTrigger("onScheduleToMail", trigger.event);
       }
       if (trigger.notifiers.includes("slack")) {
-        setTimeBasedTrigger(
-          onScheduleHandlerName.onScheduleToSlack,
-          trigger.event
-        );
+        setTimeBasedTrigger("onScheduleToSlack", trigger.event);
       }
     }
   });

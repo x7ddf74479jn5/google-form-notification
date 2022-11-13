@@ -1,6 +1,6 @@
 import { generalConfig, organizationConfig } from "config";
 
-import { getProperties } from "@/core/property";
+import { getProperties } from "@/lib/property";
 import type { GeneralConfig, OrganizationConfig } from "@/types";
 
 import { getEnv, getGlobalVars } from "./env";

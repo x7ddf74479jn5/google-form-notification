@@ -1,4 +1,4 @@
-import { getForm } from "@/lib/gas";
+import { getForm } from "@/lib/form";
 import { getConfig } from "@/utils/config";
 
 export const sendMail = (body: string) => {

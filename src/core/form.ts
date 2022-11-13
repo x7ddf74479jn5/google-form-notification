@@ -1,7 +1,7 @@
-import { sendMail, sendSlack } from "@/core/notifier";
-import type { Urls } from "@/lib/gas";
-import { getForm } from "@/lib/gas";
-import { getUrls } from "@/lib/gas";
+import { getForm } from "@/lib/form";
+import { sendMail, sendSlack } from "@/lib/notifier";
+import type { Urls } from "@/lib/utils";
+import { getUrls } from "@/lib/utils";
 
 /**
  * @see https://developers.google.com/apps-script/guides/triggers/events#form-submit
@@ -80,9 +80,4 @@ ${ssUrl}
 `;
 
   return body;
-};
-
-export const onFormSubmitHandlerName = {
-  onFormSubmitToMail: onFormSubmitToMail.name,
-  onFormSubmitToSlack: onFormSubmitToSlack.name,
 };

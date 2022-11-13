@@ -1,40 +1,30 @@
-import { onFormSubmitToMail, onFormSubmitToSlack } from "@/core/form";
-import { onScheduleToMail, onScheduleToSlack } from "@/core/schedule";
-import { resetTriggers, setTriggers } from "@/core/trigger";
-import { registerMenu } from "@/core/ui";
-import { debugMail, debugSlack } from "@/test/debug";
-
-const greeting = () => {
-  Logger.log("Hello World");
-};
-
-// @ts-expect-error
-(global as any).greeting = greeting;
+import { Form, Hook, Schedule, Trigger } from "./core";
+import { Debug } from "./test";
 
 const main = () => {
-  resetTriggers();
-  setTriggers();
-};
-
-const onOpen = () => {
-  registerMenu();
+  Trigger.resetTriggers();
+  Trigger.setTriggers();
 };
 
 // @ts-expect-error
-(global as any).main = main;
+global.main = main;
 // @ts-expect-error
-(global as any).onOpen = onOpen;
+global.onOpen = Hook.onOpen;
 // @ts-expect-error
-(global as any).onFormSubmitToMail = onFormSubmitToMail;
+global.openSettings = Hook.openSettings;
 // @ts-expect-error
-(global as any).onFormSubmitToSlack = onFormSubmitToSlack;
+global.onFormSubmitToMail = Form.onFormSubmitToMail;
 // @ts-expect-error
-(global as any).onScheduleToMail = onScheduleToMail;
+global.onFormSubmitToSlack = Form.onFormSubmitToSlack;
 // @ts-expect-error
-(global as any).onScheduleToSlack = onScheduleToSlack;
+global.onScheduleToMail = Schedule.onScheduleToMail;
 // @ts-expect-error
-(global as any).debugMail = debugMail;
+global.onScheduleToSlack = Schedule.onScheduleToSlack;
 // @ts-expect-error
-(global as any).debugSlack = debugSlack;
+global.debugMail = Debug.debugMail;
 // @ts-expect-error
-(global as any).resetTriggers = resetTriggers;
+global.debugSlack = Debug.debugSlack;
+// @ts-expect-error
+global.greeting = Debug.greeting;
+// @ts-expect-error
+global.resetTriggers = Trigger.resetTriggers;

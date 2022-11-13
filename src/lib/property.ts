@@ -39,3 +39,8 @@ export function saveProperties(
     MAIL_TITLE: mail_title,
   });
 }
+
+export function registerMenu() {
+  const ui = SpreadsheetApp.getUi();
+  ui.createMenu("🎈 Menu").addItem("Settings", "openSettings").addToUi();
+}
