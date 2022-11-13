@@ -51,7 +51,7 @@ const buildOptions = {
     copy({
       resolveFrom: "cwd",
       assets: {
-        from: ["./static/*"],
+        from: ["./static/**/*.{html,css}"],
         to: ["./build"],
       },
     }),
