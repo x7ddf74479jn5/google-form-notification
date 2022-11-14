@@ -3,5 +3,4 @@ node_modules/
 .clasp.json
 .env
 
-build/settings.html
-build/main.js
+build
